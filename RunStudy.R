@@ -11,7 +11,6 @@ level(logger) <- "INFO"
 # instantiate outcome cohorts ----
 info(logger, "INSTANTIATE OUTCOME COHORTS")
 outcome_cohorts <- readCohortSet(here(
-  "1_InstantiateCohorts",
   "outcomeCohorts"
 ))
 if (run_as_test == TRUE) {

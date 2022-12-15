@@ -1,7 +1,6 @@
 # Load packages ------
 
 # to install latest version of IncidencePrevalence
-# remotes::install_github("darwin-eu/CDMConnector")
 # remotes::install_github("darwin-eu/IncidencePrevalence")
 
 # load r packages
@@ -38,10 +37,6 @@ db <- dbConnect("....")
 
 # The name of the schema that contains the OMOP CDM with patient-level data
 cdm_database_schema<-"...."
-
-# The name of the schema that contains the vocabularies 
-# (often this will be the same as cdm_database_schema)
-vocabulary_database_schema<-cdm_database_schema
 
 # The name of the schema where results tables will be created 
 results_database_schema<-"...."

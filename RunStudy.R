@@ -45,7 +45,7 @@ if (run_as_test != TRUE) {
   cdm$denominator_age_gr <- generateDenominatorCohortSet(
     cdm = cdm,
     startDate = as.Date("2010-01-01"),
-    ageGroups = list(
+    ageGroup = list(
       # age_gr_1
       c(0, 9), c(10, 19), c(20, 29), c(30, 39), c(40, 49),
       c(50, 59), c(60, 69), c(70, 79), c(80, 89),

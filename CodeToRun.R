@@ -1,7 +1,7 @@
 # Load packages ------
 
 # to install latest version of IncidencePrevalence
-# remotes::install_github("darwin-eu/IncidencePrevalence")
+# remotes::install_github("darwin-eu-dev/IncidencePrevalence")
 
 # load r packages
 library(SqlRender)

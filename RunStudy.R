@@ -77,6 +77,8 @@ for (i in seq_along(denominators)) {
     cdm = cdm,
     denominatorTable = denominators[[i]],
     outcomeTable = outcome_table_name,
+    outcomeCohortId = outcome_cohorts$cohortId,
+    outcomeCohortName = outcome_cohorts$cohortName,
     interval = c("years"),
     verbose = TRUE
   )
@@ -88,7 +90,9 @@ for (i in seq_along(denominators)) {
   )]] <- estimatePeriodPrevalence(
     cdm = cdm,
     denominatorTable = denominators[[i]],
-    outcomeTable = outcome_table_name,
+    outcomeTable = outcome_table_name, 
+    outcomeCohortId = outcome_cohorts$cohortId,
+    outcomeCohortName = outcome_cohorts$cohortName,
     completeDatabaseIntervals = TRUE,
     fullContribution = c(TRUE, FALSE),
     interval = c("years"),
@@ -97,17 +101,20 @@ for (i in seq_along(denominators)) {
 }
 # gather results and export -----
 info(logger, "GATHERING RESULTS")
-study_resuls <- gatherIncidencePrevalenceResults(prevalence_estimates,
-  outcomeCohortId = outcome_cohorts$cohortId,
-  outcomeCohortName = outcome_cohorts$cohortName,
-  databaseName = db_name
+study_resuls <- gatherIncidencePrevalenceResults(cdm,
+                                                 resultList = prevalence_estimates,
+                                                 databaseName = db_name
 )
 info(logger, "ZIPPING RESULTS")
 exportIncidencePrevalenceResults(
   result = study_resuls,
-  zipName = db_name,
+  zipName = paste0(c(db_name, 
+                     "C1_001_Results", 
+                     format(Sys.Date(), format="%Y%m%d")),
+                   collapse = "_"),
   outputFolder = output_folder
 )
+
 print("Done!")
 print("-- If all has worked, there should now be a zip folder with your results in the output folder to share")
 print("-- Thank you for running the study!")

@@ -1,9 +1,9 @@
+
+# Install dependencies -----
+#install.packages("renv") # if not already installed, install renv from CRAN
+renv::restore() # this should prompt you to install the various packages required for the study
+
 # Load packages ------
-
-# to install latest version of IncidencePrevalence
-# remotes::install_github("darwin-eu-dev/IncidencePrevalence")
-
-# load r packages
 library(SqlRender)
 library(CirceR)
 library(CDMConnector)
@@ -41,11 +41,12 @@ cdm_database_schema<-"...."
 # The name of the schema where results tables will be created 
 results_database_schema<-"...."
 
-# Name of outcome table in the result table where the outcome cohorts will be stored
-# Note, if there is an existing table in your results schema with the same names
+# Name of table prefix to use in the result schema for tables created during 
+# the study
+# Note, if there is an existing table in your results schema with the same name
 # it will be overwritten 
 # Also note, this must be lower case
-outcome_table_name<-"...."
+table_prefix <- "...."
 
 # create cdm reference ----
 cdm <- CDMConnector::cdm_from_con(con = db, 
@@ -57,6 +58,5 @@ cdm$person %>%
   tally()
 
 # Run the study ------
-run_as_test<-TRUE
 source(here("RunStudy.R"))
 # after the study is run you should have a zip folder in your output folder to share
